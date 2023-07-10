@@ -2,11 +2,11 @@
 
 These library will help you with the usage of Petfinder API.
 
-[![Latest Stable Version](http://poser.pugx.org/albawebstudio/petfinder-api/v)](https://packagist.org/packages/albawebstudio/petfinder-api) 
-[![Total Downloads](http://poser.pugx.org/albawebstudio/petfinder-api/downloads)](https://packagist.org/packages/albawebstudio/petfinder-api) 
-[![Latest Unstable Version](http://poser.pugx.org/albawebstudio/petfinder-api/v/unstable)](https://packagist.org/packages/albawebstudio/petfinder-api) 
-[![License](http://poser.pugx.org/albawebstudio/petfinder-api/license)](https://packagist.org/packages/albawebstudio/petfinder-api) 
-[![PHP Version Require](http://poser.pugx.org/albawebstudio/petfinder-api/require/php)](https://packagist.org/packages/albawebstudio/petfinder-api)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/albawebstudio/petfinder-api.svg?style=flat-square)](https://packagist.org/packages/albawebstudio/petfinder-api)
+[![Total Downloads](https://img.shields.io/packagist/dt/albawebstudio/petfinder-api.svg?style=flat-square)](https://packagist.org/packages/albawebstudio/petfinder-api)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/albawebstudio/petfinder-api/php)](https://packagist.org/packages/albawebstudio/petfinder-api)
+
 
 ## Installation
 

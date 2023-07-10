@@ -6,9 +6,6 @@ use albawebstudio\PetfinderApi\exceptions\InvalidAuthorizationException;
 use albawebstudio\PetfinderApi\exceptions\InvalidRequestException;
 use albawebstudio\PetfinderApi\exceptions\PetfinderConnectorException;
 use Exception;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 
 class PetfinderBaseComponent
 {

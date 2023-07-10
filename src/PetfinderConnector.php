@@ -107,6 +107,10 @@ class PetfinderConnector
         return self::$instance;
     }
 
+    /**
+     * Fetch access token from Petfinder (and cache it)
+     * @return void
+     */
     public static function authenticate(): void
     {
         try {
@@ -131,7 +135,6 @@ class PetfinderConnector
                 'json' => $data,
             ]);
 
-            // TODO: CACHE ACCESS TOKEN
             self::$accessToken = json_decode($response->getBody()->getContents(), true)['access_token'];
             Cache::add('petfinder_access_token', self::$accessToken, Carbon::now()->addHour());
 

@@ -22,43 +22,6 @@ class PetfinderBaseComponent
         $this->_connector = PetfinderConnector::getInstance();
     }
 
-    /*private function authenticate(): void
-    {
-        try {
-            $headers = [
-                'User-Agent' => 'albawebstudio-petfinderapi/1.0',
-                'Accept' => 'application/json',
-            ];
-            $data = [
-                'grant_type' => 'client_credentials',
-                'client_id' => $this->_connector::$key,
-                'client_secret' => $this->_connector::$secret,
-            ];
-            $response = $this->_connector->api("oauth2/token", [
-                    'headers' => $headers,
-                    'json' => $data,
-                ],
-                PetfinderConnector::POST,
-            );
-
-            // TODO: CACHE ACCESS TOKEN
-            $this->_connector::$accessToken = json_decode($response->getBody()->getContents(), true)['access_token'];
-            Cache::add('petfinder_access_token', $this->_connector::$accessToken, Carbon::now()->addHour());
-
-        } catch (InvalidAuthorizationException | InvalidRequestException | PetfinderConnectorException $exception) {
-            $logger = new Log();
-            $logger->error($exception->getMessage());
-        }
-    }*/
-
-    /**
-     * @return bool
-     */
-    /*public function isAuthenticated(): bool
-    {
-        return ! is_null(PetfinderConnector::$accessToken);
-    }*/
-
     /**
      * @param string $route
      * @param array $params

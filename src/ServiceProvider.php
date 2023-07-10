@@ -11,7 +11,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register(): void
     {
-        $configPath = __DIR__ . '/../config/petfinder.php';
+        $configPath = __DIR__ . '/config/petfinder.php';
         $this->mergeConfigFrom($configPath, 'petfinder');
     }
 
@@ -20,7 +20,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot(): void
     {
-        $configPath = __DIR__ . '/../config/petfinder.php';
+        $configPath = __DIR__ . '/config/petfinder.php';
         $this->publishes([$configPath => $this->getConfigPath()], 'config');
     }
 

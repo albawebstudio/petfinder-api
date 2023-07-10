@@ -5,6 +5,7 @@ namespace albawebstudio\PetfinderApi;
 use albawebstudio\PetfinderApi\exceptions\InvalidAuthorizationException;
 use albawebstudio\PetfinderApi\exceptions\InvalidRequestException;
 use albawebstudio\PetfinderApi\exceptions\PetfinderConnectorException;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Animal extends PetfinderBaseComponent
 {
@@ -17,6 +18,7 @@ class Animal extends PetfinderBaseComponent
      * @param int $page
      * @param int $limit
      * @return array
+     * @throws GuzzleException
      * @throws InvalidAuthorizationException
      * @throws InvalidRequestException
      * @throws PetfinderConnectorException
@@ -32,6 +34,7 @@ class Animal extends PetfinderBaseComponent
      * @param int $animalId
      * @param array $params
      * @return array
+     * @throws GuzzleException
      * @throws InvalidAuthorizationException
      * @throws InvalidRequestException
      * @throws PetfinderConnectorException
@@ -45,6 +48,7 @@ class Animal extends PetfinderBaseComponent
      * Fetch all Petfinder animal types
      *
      * @return array
+     * @throws GuzzleException
      * @throws InvalidAuthorizationException
      * @throws InvalidRequestException
      * @throws PetfinderConnectorException
@@ -59,6 +63,7 @@ class Animal extends PetfinderBaseComponent
      *
      * @param string $type
      * @return array
+     * @throws GuzzleException
      * @throws InvalidAuthorizationException
      * @throws InvalidRequestException
      * @throws PetfinderConnectorException
@@ -73,6 +78,7 @@ class Animal extends PetfinderBaseComponent
      *
      * @param string $type
      * @return array
+     * @throws GuzzleException
      * @throws InvalidAuthorizationException
      * @throws InvalidRequestException
      * @throws PetfinderConnectorException

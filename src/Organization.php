@@ -2,6 +2,11 @@
 
 namespace albawebstudio\PetfinderApi;
 
+use albawebstudio\PetfinderApi\exceptions\InvalidAuthorizationException;
+use albawebstudio\PetfinderApi\exceptions\InvalidRequestException;
+use albawebstudio\PetfinderApi\exceptions\PetfinderConnectorException;
+use GuzzleHttp\Exception\GuzzleException;
+
 class Organization extends PetfinderBaseComponent
 {
     /**
@@ -13,9 +18,10 @@ class Organization extends PetfinderBaseComponent
      * @param int $page
      * @param int $limit
      * @return array
-     * @throws exceptions\InvalidAuthorizationException
-     * @throws exceptions\InvalidRequestException
-     * @throws exceptions\PetfinderConnectorException
+     * @throws GuzzleException
+     * @throws InvalidAuthorizationException
+     * @throws InvalidRequestException
+     * @throws PetfinderConnectorException
      */
     public function organizations(array $params, string $sort = '', int $page = 0, int $limit = 0): array
     {
@@ -25,13 +31,14 @@ class Organization extends PetfinderBaseComponent
     /**
      * Fetch specific organization by ID from Petfinder
      *
-     * @param int $organizationId
+     * @param string $organizationId
      * @return array
-     * @throws exceptions\InvalidAuthorizationException
-     * @throws exceptions\InvalidRequestException
-     * @throws exceptions\PetfinderConnectorException
+     * @throws GuzzleException
+     * @throws InvalidAuthorizationException
+     * @throws InvalidRequestException
+     * @throws PetfinderConnectorException
      */
-    public function organization(int $organizationId): array
+    public function organization(string $organizationId): array
     {
         return $this->get("organizations/$organizationId");
     }

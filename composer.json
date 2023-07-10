@@ -10,7 +10,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "albawebstudio\\PetfinderApi\\": "src/"
+            "albawebstudio\\petfinder-api\\": "src/"
         }
     },
     "authors": [

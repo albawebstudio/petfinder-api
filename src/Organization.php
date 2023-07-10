@@ -17,7 +17,7 @@ class Organization extends PetfinderBaseComponent
      * @throws exceptions\InvalidRequestException
      * @throws exceptions\PetfinderConnectorException
      */
-    public function organizations(array $params, string $sort = 'recent', int $page = 0, int $limit = 0): array
+    public function organizations(array $params, string $sort = '', int $page = 0, int $limit = 0): array
     {
         return $this->get('organizations', $params, $sort, $page, $limit);
     }

@@ -182,13 +182,14 @@ class PetfinderConnector
      * @param array $params
      * @param string $method
      * @param $body
+     * @param bool $appendOrganization
      * @return mixed|void
      * @throws GuzzleException
      * @throws InvalidAuthorizationException
      * @throws InvalidRequestException
      * @throws PetfinderConnectorException
      */
-    public function api($resource, array $params = [], string $method = "GET", $body = null)
+    public function api($resource, array $params = [], string $method = "GET", $body = null, bool $appendOrganization = true)
     {
 
         try {
@@ -207,11 +208,20 @@ class PetfinderConnector
                 $headers['content-type'] = 'application/json';
             }
 
-            $response = $client->request($method, $this->getEndpointUrl() . "$resource", [
+            if ($appendOrganization) {
+                $params = array_merge([ 'organization' => self::$organization ], $params);
+            }
+
+            $options = [
                 'headers' => $headers,
-                'query' => array_merge([ 'organization' => self::$organization ], $params),
-                'body' => $body,
-            ]);
+                'query' => $params,
+            ];
+
+            if (null !== $body) {
+                $options['body'] = $body;
+            }
+
+            $response = $client->request($method, $this->getEndpointUrl() . "$resource", $options);
 
             if ($response->getStatusCode() >= 300) {
                 throw new PetfinderConnectorException($response->getBody(), $response->getStatusCode());
@@ -225,11 +235,11 @@ class PetfinderConnector
                 $statusCode = $exception->getResponse()->getStatusCode();
                 switch ($statusCode) {
                     case 401:
-                        throw new InvalidAuthorizationException($responseBody, $statusCode);
+                        throw new InvalidAuthorizationException($responseBody->getReasonPhrase(), $statusCode);
                     case 400:
-                        throw new InvalidRequestException($responseBody, $statusCode);
+                        throw new InvalidRequestException($responseBody->getReasonPhrase(), $statusCode);
                 }
-                throw new PetfinderConnectorException($responseBody, $statusCode);
+                throw new PetfinderConnectorException($responseBody->getReasonPhrase(), $statusCode);
             }
         } catch (RequestException $exception) {
             throw new InvalidRequestException($exception->getMessage());

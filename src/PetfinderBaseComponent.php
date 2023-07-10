@@ -6,6 +6,7 @@ use albawebstudio\PetfinderApi\exceptions\InvalidAuthorizationException;
 use albawebstudio\PetfinderApi\exceptions\InvalidRequestException;
 use albawebstudio\PetfinderApi\exceptions\PetfinderConnectorException;
 use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 
 class PetfinderBaseComponent
 {
@@ -28,12 +29,14 @@ class PetfinderBaseComponent
      * @param string $sort
      * @param int $page
      * @param int $limit
-     * @return mixed|null
+     * @param bool $appendOrganization
+     * @return mixed
      * @throws InvalidAuthorizationException
      * @throws InvalidRequestException
      * @throws PetfinderConnectorException
+     * @throws GuzzleException
      */
-    protected function get(string $route, array $params = [], string $sort = '', int $page = 0, int $limit = 50): mixed
+    protected function get(string $route, array $params = [], string $sort = '', int $page = 0, int $limit = 50, bool $appendOrganization = true): mixed
     {
         if (!PetfinderConnector::isAuthenticated()) {
             PetfinderConnector::authenticate();
@@ -50,6 +53,6 @@ class PetfinderBaseComponent
             $params['sort'] = $sort;
         }
 
-        return $this->_connector->api($route, $params, PetfinderConnector::GET);
+        return $this->_connector->api($route, $params, PetfinderConnector::GET, null, $appendOrganization);
     }
 }

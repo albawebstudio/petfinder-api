@@ -78,7 +78,7 @@ class PetfinderConnector
         self::$secret = $secret;
         self::$organization = $organization;
 
-        self::$accessToken = Cache::get('petfinder_access_token', null);
+        self::$accessToken = Cache::get('petfinder_access_token');
 
         if (null !== $handlerStack) {
             self::$handlerStack     = $handlerStack;
@@ -179,14 +179,13 @@ class PetfinderConnector
      * @param array $params
      * @param string $method
      * @param $body
-     * @param bool $onlyResource
-     * @param bool $returnDespiteError
      * @return mixed|void
+     * @throws GuzzleException
      * @throws InvalidAuthorizationException
      * @throws InvalidRequestException
      * @throws PetfinderConnectorException
      */
-    public function api($resource, array $params = [], string $method = "GET", $body = null, bool $onlyResource = false, bool $returnDespiteError = false)
+    public function api($resource, array $params = [], string $method = "GET", $body = null)
     {
 
         try {
@@ -215,26 +214,22 @@ class PetfinderConnector
                 throw new PetfinderConnectorException($response->getBody(), $response->getStatusCode());
             }
 
-            $data = json_decode($response->getBody(), true);
+            return json_decode($response->getBody(), true);
 
-            return $onlyResource ? $data['animals'] : $data;
-
-        } catch (RequestException | GuzzleException $e) {
-            if ($responseBody = $e->getResponse()->getBody()) {
-                $data = json_decode($responseBody, true);
-
-                if($returnDespiteError) {
-                    return $onlyResource ? $data['resource'] :$data;
-                }
-
-                switch ($data['status']) {
+        } catch (ClientException $exception) {
+            if ($exception->hasResponse()) {
+                $responseBody = $exception->getResponse();
+                $statusCode = $exception->getResponse()->getStatusCode();
+                switch ($statusCode) {
                     case 401:
-                        throw new InvalidAuthorizationException($data['message'], $data['status']);
+                        throw new InvalidAuthorizationException($responseBody, $statusCode);
                     case 400:
-                        throw new InvalidRequestException($data['message'], $data['status']);
+                        throw new InvalidRequestException($responseBody, $statusCode);
                 }
-                throw new PetfinderConnectorException($data['message'], $data['status']);
+                throw new PetfinderConnectorException($responseBody, $statusCode);
             }
+        } catch (RequestException $exception) {
+            throw new InvalidRequestException($exception->getMessage());
         } catch (Exception $exception) {
             throw $exception;
         }

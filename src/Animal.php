@@ -9,6 +9,9 @@ use albawebstudio\PetfinderApi\exceptions\PetfinderConnectorException;
 class Animal extends PetfinderBaseComponent
 {
     /**
+     * Fetch animals from Petfinder.
+     * See [query parameters](https://www.petfinder.com/developers/v2/docs/#get-animals)
+     *
      * @param array $params
      * @param string $sort
      * @param int $page
@@ -24,6 +27,8 @@ class Animal extends PetfinderBaseComponent
     }
 
     /**
+     * Fetch specific animal by ID from Petfinder
+     *
      * @param int $animalId
      * @param array $params
      * @return array
@@ -34,6 +39,47 @@ class Animal extends PetfinderBaseComponent
     public function animal(int $animalId, array $params = []): array
     {
         return $this->get("animals/$animalId", $params);
+    }
+
+    /**
+     * Fetch all Petfinder animal types
+     *
+     * @return array
+     * @throws InvalidAuthorizationException
+     * @throws InvalidRequestException
+     * @throws PetfinderConnectorException
+     */
+    public function types(): array
+    {
+        return $this->get('types');
+    }
+
+    /**
+     * Fetch specific animal type by type from Petfinder
+     *
+     * @param string $type
+     * @return array
+     * @throws InvalidAuthorizationException
+     * @throws InvalidRequestException
+     * @throws PetfinderConnectorException
+     */
+    public function type(string $type): array
+    {
+        return $this->get("types/$type");
+    }
+
+    /**
+     * Fetch animal breeds by type from Petfinder
+     *
+     * @param string $type
+     * @return array
+     * @throws InvalidAuthorizationException
+     * @throws InvalidRequestException
+     * @throws PetfinderConnectorException
+     */
+    public function breeds(string $type): array
+    {
+        return $this->get("types/$type/breeds");
     }
 
 }

@@ -19,5 +19,6 @@
             "email": "aalba@albaweb.studio"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

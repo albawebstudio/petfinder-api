@@ -1,12 +1,6 @@
 {
     "name": "albawebstudio/petfinder-api",
     "description": "Laravel package to incorporate Petfinder API",
-    "require": {
-        "guzzlehttp/guzzle": "7.7.x-dev"
-    },
-    "require-dev": {
-        "monolog/monolog": "3.x-dev"
-    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -20,5 +14,11 @@
         }
     ],
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require": {
+        "guzzlehttp/guzzle": "^7.2"
+    },
+    "require-dev": {
+        "monolog/monolog": "^3.4"
+    }
 }

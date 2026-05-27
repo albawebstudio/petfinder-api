@@ -1,5 +1,13 @@
 # Petfinder API helper for New Leash Rescue website
 
+> **Important Notice**
+>
+> This project originally relied on the Petfinder API that is no longer available because the service has been retired. Due to this dependency, the repository is currently not functional.
+>
+> We have left the codebase online for historical reference and for anyone interested in the implementation approach. At this time, there is no active replacement for the retired service.
+>
+> If the project is updated in the future to use an alternative API or a new backend, we will revise this documentation with new setup and usage instructions.
+
 These library will help you with the usage of Petfinder API.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/albawebstudio/petfinder-api.svg?style=flat-square)](https://packagist.org/packages/albawebstudio/petfinder-api)
